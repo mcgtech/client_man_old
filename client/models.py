@@ -60,17 +60,55 @@ class Person(models.Model):
         (WHITE_W, 'White (Welsh)'),
     )
     ethnicity = models.IntegerField(choices=ETHNICITY, default=WHITE_S)
-    first_name = models.CharField(max_length=100, default='')
-    middle_name = models.CharField(max_length=100, default='')
-    last_name = models.CharField(max_length=100, default='')
-    known_as = models.CharField(max_length=100, default='')
+    first_name = models.CharField(max_length=100)
+    middle_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    known_as = models.CharField(max_length=100)
     dob = models.DateField(auto_now=False, auto_now_add=False, null=True)
 
     def __str__(self):
        return self.first_name + " " + self.last_name
 
 class Note(models.Model):
-    note = models.CharField(max_length=100, default='')
+    note = models.CharField(max_length=100)
     created_date = models.DateTimeField(default=timezone.now)
     created_by = models.ForeignKey(User, editable=False)
     person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True)
+
+class Telephone(models.Model):
+    HOME = 0
+    WORK = 1
+    MOBILE = 2
+    PHONE_TYPE = (
+        (HOME, 'Home'),
+        (WORK, 'Work'),
+        (MOBILE, 'Mobile'),
+    )
+    type = models.IntegerField(choices=PHONE_TYPE, default=MOBILE)
+    number = models.CharField(max_length=100)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True)
+
+class Address(models.Model):
+    line_1 = models.CharField(max_length=100)
+    line_2 = models.CharField(max_length=100)
+    line_3 = models.CharField(max_length=100)
+    post_code = models.CharField(max_length=100)
+    BAST = 0
+    CAIT = 1
+    INNA = 2
+    LARB = 3
+    ROSS = 4
+    SKYE = 5
+    SUTH = 6
+    AREA = (
+        (BAST, 'Badenoch and Strathspey'),
+        (CAIT, 'Caithness'),
+        (INNA, 'Inverness and Nairn'),
+        (LARB, 'Lochaber'),
+        (ROSS, 'Ross-shire'),
+        (SKYE, 'Skye'),
+        (SUTH, 'Sutherland'),
+    )
+    area = models.IntegerField(choices=AREA, default=BAST)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True)
+    evidence = models.FileField(upload_to='client/address_evidence/')
