@@ -1,9 +1,12 @@
 {% extends 'client/base.html' %}
 
+<h1>Clients</h1>
 {% block content %}
     <div class="client_list">
         {% for client in clients %}
-            {{ client }}
+            <div class="client">
+                <h3><a href="{% url 'client_detail' pk=client.pk %}">{{ client.first_name }}  {{ client.last_name }}</a></h3>
+            </div>
         {% endfor %}
     </div>
 {% endblock %}

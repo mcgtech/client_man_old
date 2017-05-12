@@ -1,0 +1,15 @@
+{% extends 'client/base.html' %}
+
+<h1>FS test</h1>
+{% block content %}
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        <table>
+            {% for form in formset %}
+                {{ form }}
+            {% endfor %}
+        </table>
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

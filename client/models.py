@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 #             http://stackoverflow.com/questions/1117564/set-django-integerfield-by-choices-name
 class Person(models.Model):
     modified_by = models.ForeignKey('auth.User', null=True)
-    modified_date = models.DateTimeField(default=timezone.now)
+    modified_date = models.DateTimeField(default=timezone.now, null=True)
     CLIENT = 0
     JOB_COACH = 1
     MANAGER = 2
@@ -85,7 +85,7 @@ class Person(models.Model):
 
 class Client(Person):
     birth_certificate = models.FileField(upload_to='client/birth_certs/', blank=True, null=True)
-    social_work_involved = models.BooleanField()
+    social_work_involved = models.BooleanField(default=False)
 
     def __str__(self):
        return self.first_name + " " + self.last_name + " is a client"
@@ -93,9 +93,9 @@ class Client(Person):
 
 class Note(models.Model):
     note = models.CharField(max_length=100)
-    created_date = models.DateTimeField(default=timezone.now)
-    created_by = models.ForeignKey(User, editable=False)
-    person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True, related_name="Note")
+    created_date = models.DateTimeField(default=timezone.now, null=True)
+    created_by = models.ForeignKey(User, editable=False, null=True)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True, related_name="note")
 
 class Telephone(models.Model):
     HOME = 0
