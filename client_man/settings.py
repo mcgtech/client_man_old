@@ -130,3 +130,5 @@ LOGIN_REDIRECT_URL = '/'
 # https://simpleisbetterthancomplex.com/tutorial/2016/08/01/how-to-upload-files-with-django.html
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+DATE_INPUT_FORMATS = ('%d-%m-%Y','%Y-%m-%d')

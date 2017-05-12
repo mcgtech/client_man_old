@@ -6,17 +6,27 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{% static 'css/client.css' %}">
+        <!-- https://developers.google.com/speed/libraries/#jquery-ui -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/client.js' %}"></script>
     </head>
     <body>
         <div class="page-header">
-            {% if user.is_authenticated %}
-                <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
-            {% else %}
+            {% if user.is_authenticated == False %}
                 <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
             {% endif %}
             <h1><a href="/">Client Management</a></h1>
         </div>
         <div class="content container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% if user.is_authenticated %}
+                        {% include "client/nav_bar.html" %}
+                    {% endif %}
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-8">
                 {% block content %}

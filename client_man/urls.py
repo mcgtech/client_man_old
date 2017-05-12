@@ -20,6 +20,7 @@ from django.contrib.auth import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # https://github.com/DjangoGirls/tutorial-extensions/blob/master/authentication_authorization/README.md
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout', kwargs={'next_page': '/'}),
     url(r'', include('client.urls')),
