@@ -1,5 +1,6 @@
  $(function() {
     setup_dob_datepicker();
+    //setup_inline_client_notes();
   });
 
 function setup_dob_datepicker()
@@ -12,5 +13,13 @@ function setup_dob_datepicker()
       yearRange: start_year + ':' + new Date().getFullYear(),
       defaultDate: start_date,
       //dateFormat: 'dd-mm-yy'
+    });
+}
+
+function setup_inline_client_notes()
+{
+    $('.note-formset').formset({
+        addText: 'add link',
+        deleteText: 'remove'
     });
 }

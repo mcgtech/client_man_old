@@ -22,9 +22,8 @@
         {% crispy form %}
 
         {% if notes_form_set %}
-
             {{ notes_form_set.management_form }}
-            <table>
+            <table id="notes">
                 {% for note_form in notes_form_set %}
                     {{ note_form }}
                 {% endfor %}
