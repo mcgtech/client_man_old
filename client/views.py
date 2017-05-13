@@ -17,26 +17,31 @@ def client_detail(request, pk):
     return render(request, 'client/client_detail.html', {'client': client})
 
 def client_new(request):
+    NotesFormSet = modelformset_factory(Note, fields=('note', 'created_date', ), extra=1, can_delete=True, can_order=True)
     if request.method == "POST":
         form = ClientForm(request.POST)
-        if form.is_valid():
+        notes_form_set = NotesFormSet(request.POST, request.FILES)
+        if form.is_valid() and notes_form_set.is_valid():
             client = form.save(commit=False)
             client.modified_by = request.user
             client.modified_date = timezone.now()
             client.save()
+            notes_instances = notes_form_set.save()
+            # TODO: assign person pk in notes_instances
             # return redirect('client_detail', pk=post.pk)
     else:
         form = ClientForm()
-    return render(request, 'client/client_edit.html', {'form': form})
+        # return a Note formset that doesn’t include any pre-existing instances of the Note model
+        notes_form_set = NotesFormSet(queryset=Note.objects.none())
+    return render(request, 'client/client_edit.html', {'form': form, 'notes_form_set': notes_form_set})
+
 
 def client_edit(request, pk):
     client = get_object_or_404(Client, pk=pk)
-    # need to load notes assocaited with the client!
-    note = get_object_or_404(Note, pk=1)
-    blanks = 0 # increase this? - use js to hide and then show when I click add?
-    NotesFormSet = modelformset_factory(Note, fields=('note', 'created_date', ), extra=blanks, can_delete=True, can_order=True) # in this we need to tell it what notest to load
+    NotesFormSet = modelformset_factory(Note, fields=('note', 'created_date', ), extra=1, can_delete=True, can_order=True)
     notes_form_set = [] # is this correct?
     if request.method == "POST":
+        # construct the ClientForm with data from the form that has just been submitted and has set its field values in the request.POST
         form = ClientForm(request.POST, instance=client)
         notes_form_set = NotesFormSet(request.POST, request.FILES)
         if form.is_valid() and notes_form_set.is_valid():
@@ -44,16 +49,12 @@ def client_edit(request, pk):
             client.modified_by = request.user
             client.modified_date = timezone.now()
             client.save()
-            notes_form_set.save();
+            notes_instances = notes_form_set.save()
+            # TODO: assign person pk in notes_instances
             #return redirect('client_detail', pk=client.pk)
     else:
         form = ClientForm(instance=client)
-        #notes_form_set = NotesFormSet(instance=note)
-        # get notes associated with this client
-        client_notes = client.note.all # filter NotesFormSet based on this
-        # notes_form_set = NotesFormSet(queryset=Note.objects.filter(person=client))
         notes_form_set = NotesFormSet(queryset=Note.objects.filter(person=client))
-    #return render(request, 'client/client_edit.html', {'form': form})
     return render(request, 'client/client_edit.html', {'form': form, 'notes_form_set': notes_form_set})
 
 

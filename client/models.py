@@ -110,6 +110,9 @@ class Telephone(models.Model):
     number = models.CharField(max_length=100)
     person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True, related_name="Telephone")
 
+    def get_type_for_display(self, target_type):
+        return self.PHONE_TYPES[target_type]
+
 class Address(models.Model):
     line_1 = models.CharField(max_length=100)
     line_2 = models.CharField(max_length=100)
