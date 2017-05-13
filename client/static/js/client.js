@@ -18,8 +18,9 @@ function setup_dob_datepicker()
 
 function setup_inline_client_notes()
 {
-    $('.note-formset').formset({
+    $('#notes tr').formset({
         addText: 'add link',
-        deleteText: 'remove'
+        deleteText: 'remove',
+        prefix: '{{ notes_form_set.nested }}'
     });
 }

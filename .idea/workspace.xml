@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03647e6e-d67d-41f4-801b-822ba4738ab9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/static/css/client_inline_form.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/static/js/client.js" afterPath="$PROJECT_DIR$/client/static/js/client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/client/base.html" afterPath="$PROJECT_DIR$/client/templates/client/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/client/client_edit.html" afterPath="$PROJECT_DIR$/client/templates/client/client_edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client_man/settings.py" afterPath="$PROJECT_DIR$/client_man/settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +18,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="49" />
+            <state relative-caret-position="351">
+              <caret line="39" column="96" lean-forward="false" selection-start-line="39" selection-start-column="90" selection-end-line="39" selection-end-column="96" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
               </folding>
@@ -44,9 +40,21 @@
       <file leaf-file-name="client_edit.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/templates/client/client_edit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+            <state relative-caret-position="540">
+              <caret line="36" column="14" lean-forward="true" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="118">
+              <caret line="92" column="16" lean-forward="false" selection-start-line="92" selection-start-column="4" selection-end-line="92" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -132,6 +140,7 @@
       <find>nested</find>
       <find>link_form</find>
       <find>autho</find>
+      <find>setup_inline_client_notes</find>
     </findStrings>
     <replaceStrings>
       <replace>client_form</replace>
@@ -141,8 +150,8 @@
       <replace>notes_form_set</replace>
       <replace>Client(</replace>
       <replace>client_id</replace>
-      <replace>note_form</replace>
       <replace>NoteInlineFormSet</replace>
+      <replace>note_form</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/client</dir>
@@ -171,8 +180,8 @@
         <option value="$PROJECT_DIR$/client/urls.py" />
         <option value="$PROJECT_DIR$/client/static/css/client_inline_form.css" />
         <option value="$PROJECT_DIR$/client/templates/client/base.html" />
-        <option value="$PROJECT_DIR$/client/static/js/client.js" />
         <option value="$PROJECT_DIR$/client/views.py" />
+        <option value="$PROJECT_DIR$/client/static/js/client.js" />
         <option value="$PROJECT_DIR$/client/templates/client/client_edit.html" />
       </list>
     </option>
@@ -609,10 +618,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/static/js/client.js">
+    <entry file="file://$PROJECT_DIR$/client/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        <state relative-caret-position="630">
+          <caret line="46" column="39" lean-forward="false" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -627,28 +636,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="46" column="39" lean-forward="false" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="49" />
+        <state relative-caret-position="351">
+          <caret line="39" column="96" lean-forward="false" selection-start-line="39" selection-start-column="90" selection-end-line="39" selection-end-column="96" />
           <folding>
             <element signature="e#0#64#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/static/js/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="6" lean-forward="false" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/templates/client/client_edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+        <state relative-caret-position="540">
+          <caret line="36" column="14" lean-forward="true" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
           <folding />
         </state>
       </provider>
