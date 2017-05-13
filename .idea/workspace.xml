@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="03647e6e-d67d-41f4-801b-822ba4738ab9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/models.py" afterPath="$PROJECT_DIR$/client/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/client/client_edit.html" afterPath="$PROJECT_DIR$/client/templates/client/client_edit.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views.py" afterPath="$PROJECT_DIR$/client/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,8 +29,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="599">
-              <caret line="52" column="55" lean-forward="false" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
+            <state relative-caret-position="342">
+              <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding>
                 <element signature="e#0#64#0" expanded="true" />
               </folding>
@@ -58,7 +56,17 @@
       <find>MEDIA_ROOT</find>
       <find>date_</find>
       <find>ClientForm</find>
+      <find>BookInlineFormSet</find>
+      <find>AuthorModelForm</find>
+      <find>formset</find>
     </findStrings>
+    <replaceStrings>
+      <replace>client_form</replace>
+      <replace>NotesFormSet</replace>
+      <replace>ClientForm</replace>
+      <replace>created_client</replace>
+      <replace>notes_form_set</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -88,7 +96,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="141" />
+    <option name="x" value="34" />
     <option name="y" value="37" />
     <option name="width" value="1837" />
     <option name="height" value="938" />
@@ -334,7 +342,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="141" y="37" width="1837" height="938" extended-state="0" />
+    <frame x="34" y="37" width="1837" height="938" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18562874" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -521,8 +529,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="52" column="55" lean-forward="false" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
+        <state relative-caret-position="342">
+          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding>
             <element signature="e#0#64#0" expanded="true" />
           </folding>
