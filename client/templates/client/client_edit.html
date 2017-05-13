@@ -15,13 +15,14 @@
             </div>
         {% endfor %}
     {% endif %}
-    <h1>New client</h1>
+    <h1>{{ the_action_text }} client</h1>
     <form method="POST" class="post-form">
         {% csrf_token %}
         {% load crispy_forms_tags %}
         {% crispy form %}
 
         {% if notes_form_set %}
+
             {{ notes_form_set.management_form }}
             <table>
                 {% for note_form in notes_form_set %}
@@ -29,6 +30,9 @@
                 {% endfor %}
             </table>
         {% endif %}
-        <button type="submit" class="save btn btn-default">Save</button>
+        {% if edit_form %}
+            <button type="submit" value=1 name="delete_client" class="save btn btn-danger">Delete</button>
+        {% endif %}
+        <button type="submit" value=2 class="save btn btn-default">Save</button>
     </form>
 {% endblock %}

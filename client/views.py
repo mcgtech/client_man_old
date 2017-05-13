@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 from .models import Client, Note
 from django.forms import modelformset_factory, inlineformset_factory
-from .forms import ClientForm
+from .forms import ClientForm, NoteForm
 # from django.contrib.auth.decorators import login_required
 
 def home_page(request):
@@ -18,34 +18,39 @@ def client_detail(request, pk):
 
 
 # http://stackoverflow.com/questions/29758558/inlineformset-factory-create-new-objects-and-edit-objects-after-created
-def manage_client(request, id):
-    if id:
-        # if this is an edit form, replace the client instance with the existing one
-        client = get_object_or_404(Client, pk=id)
-    else:
+# https://gist.github.com/ibarovic/3092910
+def manage_client(request, client_id=None):
+    if client_id is None:
         client = Client()
-    client_form = ClientForm(instance=client) # setup a form for the parent
-
-    NotesFormSet = inlineformset_factory(Client, Note, fields=('note', 'created_date', ), extra=1, can_delete=True, can_order=True)
-    notes_form_set = NotesFormSet(instance=client)
+        the_action_text = 'Create'
+        is_edit_form = False
+        NoteInlineFormSet = inlineformset_factory(Client, Note, form=NoteForm, extra=2, can_delete=False)
+    else:
+        the_action_text = 'Edit'
+        is_edit_form = True
+        client = get_object_or_404(Client, pk=client_id)
+        NoteInlineFormSet = inlineformset_factory(Client, Note, form=NoteForm, extra=2, can_delete=True)
 
     if request.method == "POST":
-        client_form = ClientForm(request.POST)
-        if id:
-            client_form = ClientForm(request.POST, instance=client)
-        notes_form_set = NotesFormSet(request.POST, request.FILES)
-        if client_form.is_valid():
-            created_client = client_form.save(commit=False)
+        if request.POST.get("delete_client"):
+            client = get_object_or_404(Client, pk=client_id)
+            client.delete()
+            return redirect('/client_list')
+        form = ClientForm(request.POST, request.FILES, instance=client, prefix="main")
+        formset = NoteInlineFormSet(request.POST, request.FILES, instance=client, prefix="nested")
+
+        if form.is_valid() and formset.is_valid():
+            created_client = form.save(commit=False)
             created_client.modified_by = request.user
             created_client.modified_date = timezone.now()
-            notes_form_set = NotesFormSet(request.POST, request.FILES, instance=created_client)
-            if notes_form_set.is_valid():
-                created_client.save()
-                notes_form_set.save()
-                #return HttpResponseRedirect(created_client.get_absolute_url())
+            created_client.save()
+            formset.save()
+            #return redirect('/bookauthor/formset')
+    else:
+        form = ClientForm(instance=client, prefix="main")
+        formset = NoteInlineFormSet(instance=client, prefix="nested")
 
-    return render(request, 'client/client_edit.html', {'form': client_form, 'notes_form_set': notes_form_set})
-
+    return render(request, 'client/client_edit.html', {'form': form, 'notes_form_set': formset, 'the_action_text' : the_action_text, 'edit_form' : is_edit_form})
 
 def client_new(request):
     return manage_client(request, None)

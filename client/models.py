@@ -87,15 +87,15 @@ class Client(Person):
     birth_certificate = models.FileField(upload_to='client/birth_certs/', blank=True, null=True)
     social_work_involved = models.BooleanField(default=False)
 
-    def __str__(self):
-       return self.first_name + " " + self.last_name + " is a client"
-
 
 class Note(models.Model):
     note = models.CharField(max_length=100)
     created_date = models.DateTimeField(default=timezone.now, null=True)
     created_by = models.ForeignKey(User, editable=False, null=True)
     person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True, related_name="note")
+
+    def __str__(self):
+       return self.note
 
 class Telephone(models.Model):
     HOME = 0
@@ -110,8 +110,11 @@ class Telephone(models.Model):
     number = models.CharField(max_length=100)
     person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True, related_name="Telephone")
 
-    def get_type_for_display(self, target_type):
-        return self.PHONE_TYPES[target_type]
+    def get_type_for_display(self):
+        return self.PHONE_TYPES[self.type]
+
+    def __str__(self):
+       return self.number + ' (' + self.get_type_for_display(self) + ')'
 
 class Address(models.Model):
     line_1 = models.CharField(max_length=100)
@@ -137,3 +140,9 @@ class Address(models.Model):
     area = models.IntegerField(choices=AREA, default=BAST)
     evidence = models.FileField(upload_to='client/address_evidence/')
     person = models.ForeignKey(Person, on_delete=models.CASCADE, null=True, related_name="Address")
+
+    def get_area_for_display(self):
+        return self.AREA[self.area]
+
+    def __str__(self):
+       return self.line_1 + ' (' + self.get_area_for_display(self) + ')'
